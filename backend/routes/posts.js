@@ -48,17 +48,24 @@ router.post(
 
 router.get("", (req, res, next) => {
   const pageSize = +req.query.pagesize;
-  const currentPage = req.query.page;
+  const currentPage = +req.query.page;
   const postQuery = Post.find();
+  let fetchedPosts;
   if (pageSize && currentPage) {
     postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
   }
-  postQuery.find().then((doc) => {
-    res.status(200).json({
-      message: "success",
-      posts: doc,
+  postQuery
+    .then((documents) => {
+      fetchedPosts = documents;
+      return Post.count();
+    })
+    .then((count) => {
+      res.status(200).json({
+        message: "success",
+        posts: fetchedPosts,
+        maxPosts: count,
+      });
     });
-  });
 });
 
 router.put(
