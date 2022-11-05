@@ -22,6 +22,7 @@ export class PostsService {
               title: post.title,
               content: post.content,
               id: post._id,
+              imagePath: post.imagePath,
             };
           });
         })
