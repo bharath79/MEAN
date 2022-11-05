@@ -47,7 +47,13 @@ router.post(
 );
 
 router.get("", (req, res, next) => {
-  Post.find().then((doc) => {
+  const pageSize = +req.query.pagesize;
+  const currentPage = req.query.page;
+  const postQuery = Post.find();
+  if (pageSize && currentPage) {
+    postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+  }
+  postQuery.find().then((doc) => {
     res.status(200).json({
       message: "success",
       posts: doc,
