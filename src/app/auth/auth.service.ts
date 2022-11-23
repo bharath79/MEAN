@@ -95,7 +95,6 @@ export class AuthService {
     if (!token || !expirationDate) {
       return false;
     }
-
     return {
       token,
       expirationDate: new Date(expirationDate),
