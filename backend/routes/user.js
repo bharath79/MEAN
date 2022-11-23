@@ -2,7 +2,6 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-const user = require("../models/user");
 
 const router = express.Router();
 
@@ -48,7 +47,7 @@ router.post("/login", (req, res, next) => {
         { expiresIn: "1h" }
       );
 
-      res.status(200).json({ token, expiresIn: 3600 });
+      res.status(200).json({ token, expiresIn: 3600, userId: fetchedUser._id });
     })
     .catch((err) => {
       console.log(err);
