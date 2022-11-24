@@ -1,52 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatExpansionModule } from '@angular/material/expansion';
+
 import { HeaderComponent } from './header/header.component';
-import { PostListComponent } from './posts/post-list/post-list.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
+
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { AngularMaterialModule } from './angular-material.module';
+import { PostsModule } from './posts/post.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PostCreateComponent,
-    HeaderComponent,
-    PostListComponent,
-    LoginComponent,
-    SignupComponent,
-    ErrorComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent, ErrorComponent],
   imports: [
-    MatDialogModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatProgressSpinnerModule,
     BrowserAnimationsModule,
-    MatPaginatorModule,
-    FormsModule,
+    AngularMaterialModule,
+    PostsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

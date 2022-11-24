@@ -8,10 +8,12 @@
       >
     </li>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLinkActive="mat-accent" routerLink="/login">Login</a>
+      <a mat-button routerLinkActive="mat-accent" routerLink="/auth/login"
+        >Login</a
+      >
     </li>
     <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLinkActive="mat-accent" routerLink="/signup"
+      <a mat-button routerLinkActive="mat-accent" routerLink="/auth/signup"
         >SignUp</a
       >
     </li>
