@@ -1,27 +1,15 @@
-const multer = require("multer");
 const express = require("express");
 const checkAuth = require("../middleware/check-auth");
+const extractFile = require("../middleware/file");
 const PostController = require("../controller/posts");
 
 const router = express.Router();
 
-
-
-router.post(
-  "",
-  checkAuth,
-  multer({ storage: storage }).single("image"),
-  PostController.createPost
-);
+router.post("", checkAuth, extractFile, PostController.createPost);
 
 router.get("", PostController.getPosts);
 
-router.put(
-  "/:id",
-  checkAuth,
-  multer({ storage: storage }).single("image"),
-  PostController.updatePosts
-);
+router.put("/:id", checkAuth, extractFile, PostController.updatePosts);
 
 router.get("/:id", PostController.getPost);
 
