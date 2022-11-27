@@ -8,7 +8,9 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://bharath:nV4Ma5TWuSjC0Uy6@cluster0.x73qz8d.mongodb.net/vinay"
+    "mongodb+srv://bharath:" +
+      process.env.MONGO_ATLAS_PASSWORD +
+      "@cluster0.x73qz8d.mongodb.net/vinay"
   )
   .then(() => {
     console.log("Mongo Connected");
@@ -17,7 +19,7 @@ mongoose
     console.log("Mongo Not Connected");
   });
 app.use(bodyParser.json());
-app.use("/images", express.static(path.join("backend/images")));
+app.use("/images", express.static(path.join("images")));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
